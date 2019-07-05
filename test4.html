@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <h1>Basic Function Demonstration</h1>
+        <button type="button" onclick="generate()">Click to start</button>
+        <script>
+            function generate() {
+                const theTitle = prompt("Please enter the title of this important document:");
+                const theCounty = prompt("Please enter the name of the county where this document will be signed:");
+                const theCountyUpperCase = theCounty.toUpperCase();
+                const theClientName = prompt("Please enter the name of the client:");
+                const theFirmName = prompt("Please enter the name of your firm:");
+                const theAttyName = prompt("Please enter the attorney's name:");
+                var theData = `<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+text-align: center
+}
+.bold {
+font-weight: bold
+}
+.underline {
+text-decoration: underline
+    }
+.right {
+text-align: right
+    }
+</style>
+</head>
+<body>
+<h1>${theTitle}</h1>
+<p>STATE OF NORTH CAROLINA</p>
+<p></p>
+<p>COUNTY OF ${theCountyUpperCase}</p>
+<p></p>
+<p>\t\tOn this _________ day of _______________, ________, ${theClientName} personally appeared before me, the said named ${theClientName}, to me known and known to me to be the person described in and who executed the foregoing instrument, and he/she acknowledged that he/she executed the same, and being duly sworn by me, made oath that the statements in the foregoing instrument are true.</p>
+<p></p>
+<p></p>
+<p></p>
+<p class="right">__________________________<br>${theAttyName}<br>${theFirmName}
+</body>
+</html>`;
+                var blob = new Blob([ theData ], {
+                    type: "text/plain;charset=utf-8"
+                });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.download = "example.doc";
+                a.href = url;
+                a.click();
+            }
+        </script>
+    </body>
+
+</html>
