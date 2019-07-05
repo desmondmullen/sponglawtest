@@ -65,6 +65,26 @@
                     saveAs(blob, "example.docx");
                     console.log("Document created successfully");
                 });
+
+                var theData = `theTitle:\t${theTitle}
+theClientName:\t${theClientName}
+theFirmName:\t${theFirmName}
+theAttyName:\t${theAttyName}`;
+                var blob = new Blob([ theData ], {
+                    type: "text/plain;charset=utf-8"
+                });
+                // var theData = [];
+                // theData.push("theTitle:\t" + theTitle);
+                // var blob = new Blob([ theData.toString() ], {
+                //     type: "text/plain;charset=utf-8"
+                // });
+                var url = URL.createObjectURL(blob);
+
+                var a = document.createElement('a');
+                a.download = "data.txt";
+                a.href = url;
+                a.click();
+
             }
         </script>
 
